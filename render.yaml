@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: kimdungforum
+    env: java
+    branch: main
+    plan: free
+    buildCommand: ./mvnw -DskipTests package
+    startCommand: java -Dserver.port=$PORT -jar target/*.jar
+    envVars:
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
+      - key: SPRING_JPA_SHOW_SQL
+        value: "true"
+      - key: SPRING_JPA_FORMAT_SQL
+        value: "true"
