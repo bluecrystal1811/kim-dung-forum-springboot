@@ -4,7 +4,8 @@ services:
     env: java
     branch: main
     plan: free
-    buildCommand: ./mvnw -DskipTests package
+    # Ensure mvnw is executable on Render's Linux builders, then run it
+    buildCommand: chmod +x ./mvnw && bash ./mvnw -DskipTests package
     startCommand: java -Dserver.port=$PORT -jar target/*.jar
     envVars:
       - key: SPRING_JPA_HIBERNATE_DDL_AUTO
